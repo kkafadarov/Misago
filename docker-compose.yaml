@@ -9,7 +9,8 @@ services:
       - POSTGRES_USER=misago
       - POSTGRES_PASSWORD=misago
     ports:
-      - '127.0.0.1:5432:5432'
+      - '127.0.0.1:5433:5433'
+    command: -p 5433
   redis:
     image: redis:5
     restart: unless-stopped
@@ -30,7 +31,7 @@ services:
     ports:
       # Map port 8000 in the container to port 8000 on the host
       # This way we can access the forum through http://localhost:8000
-      - "${MISAGO_DEVSERVER_PORT:-8000}:8000"
+      - "${MISAGO_DEVSERVER_PORT:-8003}:8000"
     depends_on:
       - postgres
       - redis
